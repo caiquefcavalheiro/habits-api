@@ -1,31 +1,10 @@
 <h1 align="center">
-  <img alt="KenzieHub" title="KenzieHub" src="https://kenzie.com.br/images/logoblue.svg" width="100px" />
-</h1>
-
-<h1 align="center">
   Gestão de Hábitos - API
 </h1>
 
 <p align = "center">
 Este é o backend da aplicação Gestão de hábitos - Uma solução para o acompanhamento de hábitos do usuário e de conexão entre pessoas com hábitos em comum. O objetivo dessa aplicação é conseguir criar um frontend de qualidade em grupo, utilizando o que foi ensinado no módulo - E desenvolver hard skills e soft skills.
 </p>
-
-## **Endpoints**
-
-A API tem 25 endpoints listados, sendo em volta principalmente dos grupos de hábitos - possibilitando o usuário a ingressar em grupos, se conectar e criar metas e atividades para o seu grupo. <br/>
-Também existe a possibilidade do usuário fazer um tracking pessoal de hábitos dentro da aplicação. <br/>
-O JSON para utilizar no Insomnia é este aqui -> https://drive.google.com/file/d/1jyMfmSCTTMP5RIoFeoUxQQk-x5TcJicW/view?usp=sharing
-Para importar o JSON no Insomnia é só baixar o arquivo. Na palavra "Insomnia" no canto superior esquerdo. Nesse dropdown é só clicar em "Import / Export > Import Data > From File" e selecionar o arquivo que foi feito download :v:
-
-O url base da API é https://kenzie-habits.herokuapp.com/
-
-### **Sobre o erro: "Not Found - The requested resource was not found on this server."**
-
-Esse erro acontece quando acessado um endpoint sem utilizar uma barra no final do endpoint. Lembre-se sempre de adicionar a barra da seguinte maneira:
-
-:white_check_mark: https://kenzie-habits.herokuapp.com/users/
-
-:x: https://kenzie-habits.herokuapp.com/users
 
 ## **Endpoint - Users**
 
