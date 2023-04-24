@@ -6,6 +6,7 @@
 
 echo "Building the project..."
 python3.9 -m pip install -r requirements.txt
+python3.9 -m pip install sqlite
 
 
 echo "Make Migrations"

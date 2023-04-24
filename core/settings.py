@@ -14,10 +14,8 @@ from pathlib import Path
 import os
 import dotenv
 from django.core.management.utils import get_random_secret_key
-import json
 import dj_database_url
 from datetime import timedelta
-import _sqlite3
 
 dotenv.load_dotenv()
 
@@ -28,7 +26,7 @@ SECRET_KEY = os.getenv("SECRET_KET", get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [".vercel.app"]
+ALLOWED_HOSTS = [".vercel.app","127.0.0.1", "localhost"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
