@@ -16,6 +16,7 @@ import dotenv
 from django.core.management.utils import get_random_secret_key
 import json
 import dj_database_url
+from datetime import timedelta
 
 dotenv.load_dotenv()
 
