@@ -4,3 +4,6 @@ venv/
 .env
 __pycache__
 staticfiles_build
+.dockerignore
+Dockerfile
+fly.toml
