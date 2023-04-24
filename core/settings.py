@@ -10,38 +10,23 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
-import os
 from pathlib import Path
-from decouple import config
-import dj_database_url
+import os
 import dotenv
-from datetime import timedelta
 from django.core.management.utils import get_random_secret_key
+import json
+import dj_database_url
 
 dotenv.load_dotenv()
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY", get_random_secret_key())
+SECRET_KEY = os.getenv("SECRET_KET", get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", "habits-api.fly.dev"]
-CSRF_TRUSTED_ORIGINS = ["https://habits-api.fly.dev"]
-
-# RENDER_EXTERNAL_HOSTNAME = os.getenv("RENDER_EXTERNAL_HOSTNAME")
-# if RENDER_EXTERNAL_HOSTNAME:
-#     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
-
-
-# Application definition
+ALLOWED_HOSTS = [".vercel.app"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -50,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'whitenoise.runserver_nostatic',
     'rest_framework',
     'django_filters',
     'corsheaders',
@@ -119,28 +105,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-
 DATABASES = {
     'default': dj_database_url.config(default='sqlite:///' + os.path.join('db.sqlite3'))
 }
 
-# DATABASE_URL = os.getenv('DATABASE_URL')
-
-# if DATABASE_URL:
-#     db_from_env = dj_database_url.config(
-#         default=DATABASE_URL, conn_max_age=500, ssl_require=True)
-#     DATABASES['default'].update(db_from_env)
-
-if not DEBUG:
-    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
-# Password validation
-# https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
+STATICFILES_DIRS = os.path.join(BASE_DIR),
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
 AUTH_PASSWORD_VALIDATORS = [
     {
