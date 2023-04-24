@@ -124,13 +124,15 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("POSTGRES_DB"),
-        "USER": os.getenv("POSTGRES_USER"),
-        "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
-        # 'HOST': "django_db"
-    },
+  'default': {
+    'ENGINE': 'django.db.backends.mysql',
+    'NAME': os.environ.get('DB_NAME'),
+    'HOST': os.environ.get('DB_HOST'),
+    'PORT': os.environ.get('DB_PORT'),
+    'USER': os.environ.get('DB_USER'),
+    'PASSWORD': os.environ.get('DB_PASSWORD'),
+    'OPTIONS': {'ssl': {'ca': os.environ.get('MYSQL_ATTR_SSL_CA')}}
+  }
 }
 
 DATABASE_URL = os.getenv('DATABASE_URL')
