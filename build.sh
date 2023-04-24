@@ -2,7 +2,6 @@
 # exit on error
 set -o errexit
 
-sudo apt-get install python3-dev default-libmysqlclient-dev build-essential
 pip install -r requirements.txt
 python manage.py collectstatic --no-input
 python manage.py migrate
