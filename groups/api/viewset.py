@@ -1,6 +1,5 @@
 from rest_framework.generics import get_object_or_404
 from users.models import User
-import ipdb
 from rest_framework import serializers, status
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.viewsets import ModelViewSet

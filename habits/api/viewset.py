@@ -5,8 +5,6 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .serializer import HabitSerializer
 from habits.models import Habit
-from users.models import User
-import ipdb
 
 
 class HabitViewSet(ModelViewSet):
