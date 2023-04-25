@@ -12,12 +12,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
-import urllib.parse as up
 import dotenv
 from django.core.management.utils import get_random_secret_key
 import dj_database_url
 from datetime import timedelta
-import psycopg2
 
 dotenv.load_dotenv()
 
@@ -28,7 +26,7 @@ SECRET_KEY = os.getenv("SECRET_KET", get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [".vercel.app","127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -107,25 +105,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-up.uses_netloc.append("postgres")
-url = up.urlparse(os.environ["DATABASE_URL"])
-conn = psycopg2.connect(database=url.path[1:],
-user=url.username,
-password=url.password,
-host=url.hostname,
-port=url.port
-)
+DATABASES = {
+    "default": {
+    "ENGINE": "django.db.backends.sqlite3",
+    "NAME": BASE_DIR / "db.sqlite3",
+    } 
+}
 
-# DATABASES = {
-#     "default": {
-#     "ENGINE": "django.db.backends.sqlite3",
-#     "NAME": BASE_DIR / "db.sqlite3",
-#     } 
-# }
-
-# if os.getenv("DATABASE_URL"):
-#    DATABASES['default'] = dj_database_url.config()
-#    DEBUG = False
+if os.getenv("DATABASE_URL"):
+   DATABASES['default'] = dj_database_url.config()
+   DEBUG = False
 
 STATICFILES_DIRS = os.path.join(BASE_DIR),
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
@@ -144,7 +133,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
